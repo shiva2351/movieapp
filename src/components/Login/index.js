@@ -4,7 +4,7 @@ import Cookies from 'js-cookie'
 import './index.css'
 
 class Login extends Component {
-  state = {username: '', password: ''}
+  state = {username: '', password: '', errorMsg: ''}
 
   onSubForm = async event => {
     event.preventDefault()
@@ -17,13 +17,16 @@ class Login extends Component {
     if (response.ok) {
       console.log(resData)
       this.onSuccess(resData.jwt_token)
+    } else {
+      console.log(resData, 'kk')
+      this.setState({errorMsg: resData.error_msg})
     }
   }
 
   onSuccess = token => {
     Cookies.set('jwt_token', token, {expires: 30})
     const {history} = this.props
-    history.replace('/home')
+    history.replace('/')
   }
 
   onChangeUser = event => {
@@ -35,32 +38,51 @@ class Login extends Component {
   }
 
   render() {
-    const {username, password} = this.state
+    const {username, password, errorMsg} = this.state
     const jwtToken = Cookies.get('jwt_token')
     if (jwtToken !== undefined) {
       return <Redirect to="/" />
     }
     return (
-      <div>
-        <form onSubmit={this.onSubForm}>
-          <label htmlFor="userId">USERNAME</label>
-          <input
-            onChange={this.onChangeUser}
-            id="userId"
-            value={username}
-            placeholder="Username"
-            type="text"
+      <div className="login-card">
+        <div className="login-img-container">
+          <img
+            className="login-website-logo"
+            src="https://res.cloudinary.com/dyx9u0bif/image/upload/v1656594712/Group_7399_wrvd0n.png"
+            alt="login website logo"
           />
-          <label htmlFor="passId">PASSWORD</label>
-          <input
-            onChange={this.onChangePass}
-            id="passId"
-            value={password}
-            placeholder="Password"
-            type="password"
-          />
-          <button type="submit">Login</button>
-        </form>
+        </div>
+        <div className="login-f-container">
+          <form onSubmit={this.onSubForm} className="login-form-card">
+            <h1>login</h1>
+            <label className="login-label" htmlFor="userId">
+              USERNAME
+            </label>
+            <input
+              className="login-input"
+              onChange={this.onChangeUser}
+              id="userId"
+              value={username}
+              placeholder="Username"
+              type="text"
+            />
+            <label className="login-label" htmlFor="passId">
+              PASSWORD
+            </label>
+            <input
+              className="login-input"
+              onChange={this.onChangePass}
+              id="passId"
+              value={password}
+              placeholder="Password"
+              type="password"
+            />
+            {errorMsg !== '' && <p>{errorMsg}</p>}
+            <button className="login-btn" type="submit">
+              Login
+            </button>
+          </form>
+        </div>
       </div>
     )
   }

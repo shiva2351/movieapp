@@ -1,0 +1,9 @@
+.slider-Card {
+  display: flex;
+  justify-content: space-around;
+  padding-left: 0;
+}
+.slide-item {
+  margin-left: 20px;
+  list-style-type: none;
+}

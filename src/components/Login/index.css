@@ -1,0 +1,45 @@
+.login-card {
+  background-image: url('https://res.cloudinary.com/delrn2vxa/image/upload/v1700963121/netfilx_1_dzcmmq.jpg');
+  min-height: 100vh;
+  background-size: cover;
+  display: flex;
+  flex-direction: column;
+}
+.login-img-container {
+  padding: 50px;
+}
+
+.login-form-card {
+  margin-top: 10px;
+  align-self: center;
+  display: flex;
+  flex-direction: column;
+  border-radius: 7px;
+  background-color: black;
+  padding: 20px;
+  color: white;
+  min-width: 350px;
+  min-height: 350px;
+}
+.login-f-container {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+}
+.login-btn {
+  background-color: red;
+  margin-top: 20px;
+  height: 25px;
+  border: 0;
+  border-radius: 5px;
+  padding: 2px;
+}
+.login-label {
+  font-size: 12px;
+}
+.login-input {
+  margin-bottom: 20px;
+  margin-top: 10px;
+  height: 30px;
+  border-radius: 4px;
+}
